@@ -1,6 +1,11 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status='published')
 
 class Post(models.Model):
     STATUS_CHOICES = (
@@ -16,7 +21,15 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
 
+    objects = models.Manager()  # Default manager
+    published = PublishedManager()  # Custom manager for published posts
+
     class Meta:
         ordering = ('-publish',)
+
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blogapp:post_detail', 
+        args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
