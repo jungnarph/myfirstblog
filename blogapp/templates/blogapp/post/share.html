@@ -1,0 +1,27 @@
+{% extends "blogapp/base.html" %}
+
+{% block content %}
+  <h2>Share "{{ post.title }}" via Email</h2>
+
+  {% if form.errors %}
+    <p style="color: red;">Please correct the errors below.</p>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    
+    <label for="id_name">Your Name:</label>
+    {{ form.name }}
+    
+    <label for="id_email">Your Email:</label>
+    {{ form.email }}
+
+    <label for="id_to">Recipient's Email:</label>
+    {{ form.to }}
+
+    <label for="id_comments">Comments (optional):</label>
+    {{ form.comments }}
+
+    <button type="submit">Send Email</button>
+  </form>
+{% endblock %}
