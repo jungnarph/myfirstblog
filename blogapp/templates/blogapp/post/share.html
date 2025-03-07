@@ -1,27 +1,17 @@
 {% extends "blogapp/base.html" %}
-
+{% block title %}Share a post{% endblock %}
 {% block content %}
-  <h2>Share "{{ post.title }}" via Email</h2>
-
-  {% if form.errors %}
-    <p style="color: red;">Please correct the errors below.</p>
+  {% if sent %}
+    <h1>E-mail successfully sent</h1>
+    <p>
+      "{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.
+    </p>
+  {% else %}
+    <h1>Share "{{ post.title }}" by e-mail</h1>
+    <form method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="submit">Send Email</button>
+    </form>
   {% endif %}
-
-  <form method="post">
-    {% csrf_token %}
-    
-    <label for="id_name">Your Name:</label>
-    {{ form.name }}
-    
-    <label for="id_email">Your Email:</label>
-    {{ form.email }}
-
-    <label for="id_to">Recipient's Email:</label>
-    {{ form.to }}
-
-    <label for="id_comments">Comments (optional):</label>
-    {{ form.comments }}
-
-    <button type="submit">Send Email</button>
-  </form>
 {% endblock %}
