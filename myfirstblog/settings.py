@@ -128,4 +128,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'stem.danieljohnbucad@gmail.com'
-EMAIL_HOST_PASSWORD = 'gyko swsf yizi rlns'
+EMAIL_HOST_PASSWORD = 'xsmt rbcv bihm wrvu'
