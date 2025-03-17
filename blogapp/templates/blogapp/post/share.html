@@ -1,6 +1,7 @@
 {% extends "blogapp/base.html" %}
 {% block title %}Share a post{% endblock %}
 {% block content %}
+<a href="{{ post.get_absolute_url }}">Back to Details</a>
 {% if sent %}
 <h1>E-mail successfully sent</h1>
 <p>

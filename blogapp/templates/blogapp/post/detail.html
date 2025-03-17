@@ -2,10 +2,12 @@
 {% load blog_tags %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
+    <a href="{% url 'blogapp:post_list' %}">Back to List</a>
     <h1>{{ post.title }}</h1>
     <p class="date">
         Published on: {{ post.publish }} by {{ post.author }}
     </p>
+    
 {{ post.body|markdown }}
     <p>
         <a href="{% url 'blogapp:post_share' post.id %}">
